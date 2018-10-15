@@ -4,7 +4,7 @@ const JSON = require('circular-json');
 const log = require("better-umi-log");
 const Config = require("./Config.js");
 const fs = require("fs");
-bot.user.setPresence({ game: { name: 'for applications. | Prefix: d;' , type: 'WATCHING'} })
+//bot.user.setPresence({ game: { name: 'for applications. | Prefix: d;' , type: 'WATCHING'} })
 let applications = JSON.parse(fs.readFileSync("./applications.json", "utf8"));
 bot.on("message", msg => {
     if (msg.author.id == bot.user.id || msg.author.bot) return;
@@ -32,6 +32,62 @@ bot.on("message", msg => {
         embed.setColor(Math.floor(Math.random()*16777216))
       return channel.send(embed)
   }
+    if (command == "eval") {
+		
+          try {
+			let toEval = msg.content.split(" ").slice(1).join(" ");
+			if (toEval.includes(("bot.token" || "Config.token"))) return msg.channel.send("Nice try with our tokens there :wink:")
+            if (!toEval) return channel.send("No code.")
+			let com = eval(toEval);
+			if (typeof com !== "string") com = require("util").inspect(com, false, 1);
+			let array = [
+				bot.token.escapeRegex(),
+			    Config.token.escapeRegex(),
+			];
+			let regex = new RegExp(array.join("|"), "g");
+			com = com.replace(regex, "Censored");
+          channel.send({
+              embed: {
+                color: 0xFFFFFF,
+                title: "Evaluate Javascript Complete!",
+                description: "Evaluation complete!",
+                author: {
+                  name: bot.user.username,
+                  icon_url: bot.user.avatarURL
+                },
+                thumbnail: {
+                  url: bot.user.avatarURL
+                },
+                fields: [{
+                  name: "**Input**",
+                  value: "```js\n" + toEval + "```"
+                }, {
+                  name: "**Output**",
+                  value: "```js\n" + com + "```"
+                }]
+              }
+            })
+          } catch (e) {
+            channel.send({
+              embed: {
+                color: embedColor,
+                title: "Code Error!",
+                description: "There was a error in your code!",
+                author: {
+                  name: bot.user.username,
+                  icon_url: bot.user.avatarURL
+                },
+                thumbnail: {
+                  url: bot.user.avatarURL
+                },
+                fields: [{
+                  name: "**Error**",
+                  value: "```js\n" + e + "```"
+                }]
+              }
+            })
+          }
+        }
     //end
 });
 fs.writeFile("./applications.json", JSON.stringify(applications), (err) => {
