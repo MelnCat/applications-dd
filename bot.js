@@ -16,8 +16,12 @@ bot.on("message", msg => {
     let args = content.split(" ");
     let argsLower = text.split(" ");
     let command = text.substring(Config.prefix.length, argsLower[0].length);
-  
-});
+  if (command == "ping") {
+      let startTime = Date.now();
+        return channel.send("Pinging...").then(pingMsg => {
+          pingMsg.edit(`:ping_pong: Took \`${Math.round(Date.now() - startTime)}ms\`.`);
+        });
+  }
 fs.writeFile("./applications.json", JSON.stringify(applications), (err) => {
     if (err) console.error(err)
   });
