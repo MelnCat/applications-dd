@@ -22,6 +22,7 @@ bot.on("message", msg => {
           pingMsg.edit(`:ping_pong: Took \`${Math.round(Date.now() - startTime)}ms\`.`);
         });
   }
+});
 fs.writeFile("./applications.json", JSON.stringify(applications), (err) => {
     if (err) console.error(err)
   });
