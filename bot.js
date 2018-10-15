@@ -60,7 +60,7 @@ bot.on("message", msg => {
 	if (command == "apply") {
 		let step = 0
 		const filter1 = m => m.content.toLowerCase() == ('continue');
-		msg.author.send("**Discord Donuts Employee Application**\nHello! Welcome! Come and apply for a position at Discord Donuts! Upon submitting an application, you will not receive a reply until we've reviewed it, and you can ensure you get a reply by making sure you're in our Discord server, the invite is https://discord.gg/4KPHfqT. You will NOT receive a reply if you get denied. Please read through the whole application clearly and answer all the questions to the best of your ability. Take your time.\nRespond with \"continue\" to continue.")
+		msg.author.send("**Discord Donuts Employee Application**\nHello! Welcome! Come and apply for a position at Discord Donuts! Upon submitting an application, you will not receive a reply until we've reviewed it, and you can ensure you get a reply by making sure you're in our Discord server. You will NOT receive a reply if you get denied. Please read through the whole application clearly and answer all the questions to the best of your ability. Take your time.\nRespond with \"continue\" to continue.")
 		.then(msg=>msg.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
 		      .then(col => {if (col.size == 1) {step = 1}})
 		.catch(col => msg.channel.send("You did not respond so I am cancelling this session."))
