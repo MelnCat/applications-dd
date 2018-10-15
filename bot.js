@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true, autoReconnect: true });
 const JSON = require('circular-json');
-const log = require("better-umi-log");
+let log = require("better-umi-log");
 const Config = require("./Config.js");
 const fs = require("fs");
 let log.success = function(i){log.custom("SUCCESS", i)}
