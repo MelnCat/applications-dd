@@ -4,9 +4,12 @@ const JSON = require('circular-json');
 const log = require("better-umi-log");
 const Config = require("./Config.js");
 const fs = require("fs");
+let log.success = function(i){log.custom("SUCCESS", i)}
 //bot.user.setPresence({ game: { name: 'for applications. | Prefix: d;' , type: 'WATCHING'} })
 let applications = JSON.parse(fs.readFileSync("./applications.json", "utf8"));
 bot.on("message", msg => {
+	const main = bot.guilds.get("294619824842080257")
+	let msg.author.isDev = msg.member.roles.keyArray().includes("488063305814900746")
     if (msg.author.id == bot.user.id || msg.author.bot) return;
   if (!msg.content.startsWith(Config.prefix)) {
       return;
@@ -34,7 +37,10 @@ bot.on("message", msg => {
   }
     if (command == "eval") {
 		if (!args[1]) {
-			msg.channel.send("NO CODE")
+			return channel.send("NO CODE")
+		}
+	    if (!msg.author.isDev) {
+			return channel.send("You\'re not a bot developer!")
 		}
          try {
           let code = args.join(" ").replace(Config.prefix+"eval ", "")
@@ -57,4 +63,4 @@ fs.writeFile("./applications.json", JSON.stringify(applications), (err) => {
     if (err) console.error(err)
   });
 bot.login(Config.token);
-log.custom("SUCCESS", "Bot logged in!")
+log.success("Bot logged in!")
