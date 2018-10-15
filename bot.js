@@ -40,12 +40,7 @@ bot.on("message", msg => {
             if (!toEval) return channel.send("No code.")
 			let com = eval(toEval);
 			if (typeof com !== "string") com = require("util").inspect(com, false, 1);
-			let array = [
-				bot.token.escapeRegex(),
-			    Config.token.escapeRegex(),
-			];
-			let regex = new RegExp(array.join("|"), "g");
-			com = com.replace(regex, "Censored");
+			com = com.replace(bot.token, "Censored");
           channel.send({
               embed: {
                 color: 0xFFFFFF,
