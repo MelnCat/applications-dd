@@ -4,7 +4,6 @@ const JSON = require('circular-json');
 const log = require("better-umi-log");
 const Config = require("./Config.js");
 const fs = require("fs");
-let log.success(i) = log.custom("SUCCESS", i)
 let applications = JSON.parse(fs.readFileSync("./applications.json", "utf8"));
 bot.on("message", msg => {
     if (msg.author.id == bot.user.id || msg.author.bot) return;
@@ -28,4 +27,4 @@ fs.writeFile("./applications.json", JSON.stringify(applications), (err) => {
     if (err) console.error(err)
   });
 bot.login(Config.token);
-log.success("Bot logged in!")
+log.custom("SUCCESS", "Bot logged in!")
