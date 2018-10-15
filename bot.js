@@ -37,7 +37,7 @@ bot.on("message", msg => {
           try {
 			let toEval = args.splice(1,args.length-1)
 			if (toEval.includes(("bot.token" || "Config.token"))) return msg.channel.send("Nice try with our tokens there :wink:")
-            if (!args[1]) return channel.send("No code.")
+            if (args[1] == undefined) return channel.send("No code.")
 			let com = eval(toEval);
 			if (typeof com !== "string") com = require("util").inspect(com, false, 1);
 			com = com.replace(bot.token, "Censored");
