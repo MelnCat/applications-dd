@@ -35,7 +35,7 @@ bot.on("message", msg => {
     if (command == "eval") {
 		
           try {
-			let toEval = msg.content.split(" ").slice(1).join(" ");
+			let toEval = args.splice(1,args.length-1)
 			if (toEval.includes(("bot.token" || "Config.token"))) return msg.channel.send("Nice try with our tokens there :wink:")
             if (!toEval) return channel.send("No code.")
 			let com = eval(toEval);
@@ -70,7 +70,7 @@ bot.on("message", msg => {
           } catch (e) {
             channel.send({
               embed: {
-                color: embedColor,
+                color: 0xFF0000,
                 title: "Code Error!",
                 description: "There was a error in your code!",
                 author: {
