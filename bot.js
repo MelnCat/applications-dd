@@ -4,7 +4,6 @@ const JSON = require('circular-json');
 let log = require("better-umi-log");
 const Config = require("./Config.js");
 const fs = require("fs");
-let log.success = function(i){log.custom("SUCCESS", i)}
 //bot.user.setPresence({ game: { name: 'for applications. | Prefix: d;' , type: 'WATCHING'} })
 let applications = JSON.parse(fs.readFileSync("./applications.json", "utf8"));
 bot.on("message", msg => {
@@ -63,4 +62,4 @@ fs.writeFile("./applications.json", JSON.stringify(applications), (err) => {
     if (err) console.error(err)
   });
 bot.login(Config.token);
-log.success("Bot logged in!")
+log.custom("SUCCESS", "Bot logged in!")
