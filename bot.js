@@ -46,7 +46,7 @@ bot.on("message", msg => {
           let code = args.join(" ").replace(Config.prefix+"eval ", "")
         let ev = require('util').inspect(eval(code));
         if (ev.length > 1950) {
-            ev = ev.substr(0, 1950)+"... ("+ev.length-1950+" more characters.)";
+            ev = ev.substr(0, 1950)+"...";
         }
         let token = bot.token.replace(/\./g, "\.")
         let re = new RegExp(token, 'g') 
