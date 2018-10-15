@@ -33,9 +33,11 @@ bot.on("message", msg => {
       return channel.send(embed)
   }
     if (command == "eval") {
-		
+		if (!args[1]) {
+			msg.channel.send("NO CODE")
+		}
          try {
-          let code = args.join(" ");
+          let code = args.join(" ").replace(Config.prefix+"eval ", "")
         let ev = require('util').inspect(eval(code));
         if (ev.length > 1950) {
             ev = ev.substr(0, 1950);
