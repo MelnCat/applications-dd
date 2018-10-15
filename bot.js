@@ -34,54 +34,19 @@ bot.on("message", msg => {
   }
     if (command == "eval") {
 		
-          try {
-			let toEval = args.splice(1,args.length-1)
-			if (toEval.includes(("bot.token" || "Config.token"))) return msg.channel.send("Nice try with our tokens there :wink:")
-           
-			let com = eval(toEval);
-			if (typeof com !== "string") com = require("util").inspect(com, false, 1);
-			com = com.replace(bot.token, "Censored");
-          channel.send({
-              embed: {
-                color: 0xFFFFFF,
-                title: "Evaluate Javascript Complete!",
-                description: "Evaluation complete!",
-                author: {
-                  name: bot.user.username,
-                  icon_url: bot.user.avatarURL
-                },
-                thumbnail: {
-                  url: bot.user.avatarURL
-                },
-                fields: [{
-                  name: "**Input**",
-                  value: "```js\n" + toEval + "```"
-                }, {
-                  name: "**Output**",
-                  value: "```js\n" + com + "```"
-                }]
-              }
-            })
-          } catch (e) {
-            channel.send({
-              embed: {
-                color: 0xFF0000,
-                title: "Code Error!",
-                description: "There was a error in your code!",
-                author: {
-                  name: bot.user.username,
-                  icon_url: bot.user.avatarURL
-                },
-                thumbnail: {
-                  url: bot.user.avatarURL
-                },
-                fields: [{
-                  name: "**Error**",
-                  value: "```js\n" + e + "```"
-                }]
-              }
-            })
-          }
+         try {
+          let code = args.join(" ");
+        let ev = require('util').inspect(eval(code));
+        if (ev.length > 1950) {
+            ev = ev.substr(0, 1950);
+        }
+        let token = bot.token.replace(/\./g, "\.")
+        let re = new RegExp(token, 'g') 
+        ev = ev.replace(re, "[REDACTED]");
+        msg.channel.send("⬆**Input:**```js\n"+code+"```**Output:**```js\n"+ev+"```")
+        } catch(err) {
+            msg.channel.sendMessage('```js\n'+err+"```")
+        }
         }
     //end
 });
