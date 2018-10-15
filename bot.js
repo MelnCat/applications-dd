@@ -9,7 +9,10 @@ log.success = function(i){log.custom("SUCCESS", i)}
 let applications = JSON.parse(fs.readFileSync("./applications.json", "utf8"));
 bot.on("message", msg => {
 	const main = bot.guilds.get("294619824842080257")
-	msg.author.isDev = msg.member.roles.keyArray().includes("488063305814900746")
+	if (!msg.channel.type == "dm") {
+		
+		msg.author.isDev = msg.member.roles.keyArray().includes("488063305814900746")
+	}
     if (msg.author.id == bot.user.id || msg.author.bot) return;
   if (!msg.content.startsWith(Config.prefix)) {
       return;
