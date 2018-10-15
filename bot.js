@@ -43,9 +43,10 @@ bot.on("message", msg => {
         let token = bot.token.replace(/\./g, "\.")
         let re = new RegExp(token, 'g') 
         ev = ev.replace(re, "[REDACTED]");
-        msg.channel.send("⬆**Input:**```js\n"+code+"```**Output:**```js\n"+ev+"```")
+        msg.channel.send("**Input:**```js\n"+code+"```**Output:**```js\n"+ev+"```")
         } catch(err) {
-            msg.channel.sendMessage('```js\n'+err+"```")
+		let code = args.join(" ");
+            msg.channel.send("**Input:**```js\n"+code+"```**Output:**```js\n"+err+"```")
         }
         }
     //end
