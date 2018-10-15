@@ -1,29 +1,31 @@
+
 {
-    "name": "discord-donuts-apply",
-    "version": "1.0.0",
-    "description": "Discord Donuts Apply! Originally owned by Beta, now maintained by Turbomarshmello, ohlookitsderpy, and Mustard!",
-    "main": "bot.js",
-    "dependencies": {
-      "better-umi-log": "^3.1.0",
-      "circular-json": "^0.3.3",
-      "discord.js": "github:hydrabolt/discord.js#9b97fe292f62f18303c8a872511ce61f683e9dc3",
-      "embed-creator": "^1.2.3",
-      "raven": "^2.6.4",
-      "request": "^2.81.0",
-      "safejson": "^1.0.1"
-    },
-    "devDependencies": {},
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/TNThacker2015/applications-dd.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/mastercraft852/discord-donuts/issues"
-    },
-    "homepage": "https://github.com/mastercraft852/discord-donuts#readme"
-  }
+  "name": "discord-donuts-apply",
+  "version": "1.0.0",
+  "description": "Discord Donuts Apply! Originally owned by Beta, now maintained by Turbomarshmello, ohlookitsderpy, and Mustard!",
+  "main": "bot.js",
+  "dependencies": {
+    "better-umi-log": "^3.1.0",
+    "circular-json": "^0.3.3",
+    "discord.js": "github:hydrabolt/discord.js#9b97fe292f62f18303c8a872511ce61f683e9dc3",
+    "embed-creator": "^1.2.4",
+    "fs": "0.0.1-security",
+    "raven": "^2.6.4",
+    "request": "^2.88.0",
+    "safejson": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TNThacker2015/applications-dd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mastercraft852/discord-donuts/issues"
+  },
+  "homepage": "https://github.com/mastercraft852/discord-donuts#readme"
+}
