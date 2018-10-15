@@ -3,6 +3,7 @@ const bot = new Discord.Client({ disableEveryone: true, autoReconnect: true });
 const JSON = require('circular-json');
 const log = require("better-umi-log");
 const Config = require("./Config.js");
+const fs = require("fs");
 let applications = JSON.parse(fs.readFileSync("./applications.json", "utf8"));
 bot.on("message", msg => {
     if (msg.author.id == bot.user.id || msg.author.bot) return;
