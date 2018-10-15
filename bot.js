@@ -57,6 +57,9 @@ bot.on("message", msg => {
             msg.channel.send("**Input:**```js\n"+code+"```**Output:**```js\n"+err+"```")
         }
         }
+	if (command == "apply") {
+		return channel.send("LMAO you\'re declined.")
+	}
     //end
 });
 fs.writeFile("./applications.json", JSON.stringify(applications), (err) => {
